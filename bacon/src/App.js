@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import './App.css';
+import Table from "./components/Table";
 
 function App() {
   const [error, setError] = useState(null);
@@ -34,7 +35,8 @@ function App() {
     return (
       <div>
         <p>working</p>
-        {console.log(restaurants)}
+        {/* {console.log(restaurants)} */}
+        <Table />
       </div>
     );
   }
