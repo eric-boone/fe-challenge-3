@@ -36,7 +36,7 @@ function App() {
       <div>
         <p>working</p>
         {/* {console.log(restaurants)} */}
-        <Table />
+        <Table restaurants={restaurants} />
       </div>
     );
   }
