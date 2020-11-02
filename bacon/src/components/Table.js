@@ -3,7 +3,18 @@ import React from "react";
 const Table = (props) => {
   const restaurants = props.restaurants;
 
-  const rows = restaurants.map((restaurants) => (
+  const restaurantSort = [...restaurants];
+  restaurantSort.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const rows = restaurantSort.map((restaurants) => (
     <tr key={restaurants.id}>
       <td>{restaurants.name}</td>
       <td>{restaurants.city}</td>
@@ -28,6 +39,7 @@ const Table = (props) => {
         <tbody>{rows}</tbody>
       </table>
       {console.log(props.restaurants)}
+      {console.log(restaurantSort)}
     </div>
   );
 };
