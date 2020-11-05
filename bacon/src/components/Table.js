@@ -1,7 +1,11 @@
 import React from "react";
 
+import stateData from "../data/states.json";
+import Filter from "./Filter";
+
 const Table = (props) => {
   const restaurants = props.restaurants;
+  const states = stateData;
 
   const restaurantSort = [...restaurants];
   restaurantSort.sort((a, b) => {
@@ -31,15 +35,13 @@ const Table = (props) => {
           <tr>
             <th>name</th>
             <th>city</th>
-            <th>state</th>
+            <th>state <Filter states={states} /></th>
             <th>telephone</th>
             <th>genre</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
       </table>
-      {console.log(props.restaurants)}
-      {console.log(restaurantSort)}
     </div>
   );
 };
