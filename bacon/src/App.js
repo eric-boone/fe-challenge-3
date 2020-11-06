@@ -36,7 +36,6 @@ function App() {
     return (
       <div>
         <p>bacon</p>
-        {/* {console.log(restaurants)} */}
         <Table restaurants={restaurants} />
       </div>
     );

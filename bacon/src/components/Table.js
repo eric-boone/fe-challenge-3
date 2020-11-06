@@ -94,8 +94,6 @@ const Table = (props) => {
         </thead>
         <tbody>{rows}</tbody>
       </table>
-      {console.log("rows", rows)}
-      {/* {console.log("props", props)} */}
     </div>
   );
 };

@@ -27,7 +27,6 @@ const Filter = (props) => {
         ))}
         ;
       </select>
-      {console.log(statesToFilter)};
     </div>
   );
 };
