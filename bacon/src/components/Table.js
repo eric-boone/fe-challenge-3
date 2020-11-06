@@ -7,10 +7,11 @@ const Table = (props) => {
   const restaurants = props.restaurants;
   const states = stateData;
   const [rows, setRows] = useState([]);
+  const [stateFilter, setStateFilter] = useState();
 
   useEffect(() => {
     sortTable(restaurants);
-  }, []);
+  }, [restaurants]);
 
   function sortTable(restaurants) {
     const restaurantSort = [...props.restaurants];
@@ -37,6 +38,12 @@ const Table = (props) => {
     setRows(rowsSorted);
   }
 
+  // function filterTable() {};
+
+  const addStateFilterHandler = (stateFilter) => {
+    setStateFilter(stateFilter);
+  };
+
   return (
     <div>
       <table>
@@ -45,7 +52,11 @@ const Table = (props) => {
             <th>name</th>
             <th>city</th>
             <th>
-              state <Filter states={states} />
+              state{" "}
+              <Filter
+                states={states}
+                onAddStateFilter={addStateFilterHandler}
+              />
             </th>
             <th>telephone</th>
             <th>genre</th>
