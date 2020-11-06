@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Filter = (props) => {
   const statesToFilter = props.states;
   const [stateToFilter, setStateToFilter] = useState();
 
+  useEffect(() => {
+    props.onAddStateFilter(stateToFilter);
+  }, [stateToFilter]);
+
   const setStateFilter = (event) => {
     event.preventDefault();
     setStateToFilter(event.target.value);
-    props.onAddStateFilter(stateToFilter);
   }
 
   return (
