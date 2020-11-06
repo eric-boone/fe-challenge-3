@@ -13,6 +13,26 @@ const Table = (props) => {
     sortTable(restaurants);
   }, [restaurants]);
 
+  useEffect(() => {
+    stateTableFilter(restaurants, stateFilter);
+  }, [stateFilter]);
+
+  function stateTableFilter(restaurants, stateFilter) {
+    const sf = stateFilter;
+    const r = restaurants;
+    const rf = [];
+
+    for (let i = 0; i < r.length; i++) {
+      if (r[i].state === sf) {
+        rf.push(r[i]);
+      }
+    }
+
+    const stuff = makeRows(rf);
+
+    setRows(stuff);
+  }
+
   function sortTable(restaurants) {
     const restaurantSort = [...props.restaurants];
     restaurantSort.sort((a, b) => {
@@ -24,21 +44,30 @@ const Table = (props) => {
       }
       return 0;
     });
-
-    const rowsSorted = restaurantSort.map((restaurants) => (
-      <tr key={restaurants.id}>
-        <td>{restaurants.name}</td>
-        <td>{restaurants.city}</td>
-        <td>{restaurants.state}</td>
-        <td>{restaurants.telephone}</td>
-        <td>{restaurants.genre}</td>
-      </tr>
-    ));
-
-    setRows(rowsSorted);
+    makeRows(restaurantSort);
   }
 
-  // function filterTable() {};
+  function makeRows(data) {
+    if (data.length === 0) {
+      const noRows = (
+        <tr>
+          <td colSpan="5">no restaurants found</td>
+        </tr>
+      );
+      setRows(noRows);
+    } else {
+      const formattedRows = data.map((restaurants) => (
+        <tr key={restaurants.id}>
+          <td>{restaurants.name}</td>
+          <td>{restaurants.city}</td>
+          <td>{restaurants.state}</td>
+          <td>{restaurants.telephone}</td>
+          <td>{restaurants.genre}</td>
+        </tr>
+      ));
+      setRows(formattedRows);
+    }
+  }
 
   const addStateFilterHandler = (stateFilter) => {
     setStateFilter(stateFilter);
