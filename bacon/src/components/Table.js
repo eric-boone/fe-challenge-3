@@ -22,19 +22,20 @@ const Table = (props) => {
     const r = restaurants;
     const rf = [];
 
-    for (let i = 0; i < r.length; i++) {
-      if (r[i].state === sf) {
-        rf.push(r[i]);
+    if (stateFilter === "all") {
+      sortTable(restaurants);
+    } else {
+      for (let i = 0; i < r.length; i++) {
+        if (r[i].state === sf) {
+          rf.push(r[i]);
+        }
       }
+      makeRows(rf);
     }
-
-    const stuff = makeRows(rf);
-
-    setRows(stuff);
   }
 
   function sortTable(restaurants) {
-    const restaurantSort = [...props.restaurants];
+    const restaurantSort = [...restaurants];
     restaurantSort.sort((a, b) => {
       if (a.name < b.name) {
         return -1;
