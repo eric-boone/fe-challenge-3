@@ -8,14 +8,37 @@ const Table = (props) => {
   const states = stateData;
   const [rows, setRows] = useState([]);
   const [stateFilter, setStateFilter] = useState();
+  const [genreFilter, setGenreFilter] = useState();
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     sortTable(restaurants);
+    allGenres(restaurants);
   }, [restaurants]);
 
   useEffect(() => {
     stateTableFilter(restaurants, stateFilter);
   }, [stateFilter]);
+
+  useEffect(() => {
+    genreTableFilter(restaurants, genreFilter);
+  }, [genreFilter]);
+
+  function allGenres(restaurants) {
+    const genresArray = [];
+
+    restaurants.forEach((restaurant) => {
+      const array = [];
+      array.push(restaurant.genre);
+      array.forEach((r) => {
+        r.split(",").forEach((r) => {
+          genresArray.push(r);
+        });
+      });
+    });
+    const uniqueGenres = [...new Set(genresArray)];
+    setGenres(uniqueGenres);
+  }
 
   function stateTableFilter(restaurants, stateFilter) {
     const sf = stateFilter;
