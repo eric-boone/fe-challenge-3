@@ -57,6 +57,23 @@ const Table = (props) => {
     }
   }
 
+  function genreTableFilter(restaurants, genreFilter) {
+    const gf = genreFilter;
+    const r = restaurants;
+    const rf = [];
+
+    if (genreFilter === "all") {
+      sortTable(restaurants);
+    } else {
+      for (let i = 0; i < r.length; i++) {
+        if (r[i].genre.includes(gf)) {
+          rf.push(r[i]);
+        }
+      }
+      makeRows(rf);
+    }
+  }
+
   function sortTable(restaurants) {
     const restaurantSort = [...restaurants];
     restaurantSort.sort((a, b) => {
