@@ -114,6 +114,10 @@ const Table = (props) => {
     setStateFilter(stateFilter);
   };
 
+  const addGenreFilterHandler = (genreFilter) => {
+    setGenreFilter(genreFilter);
+  };
+
   return (
     <div>
       <table>
@@ -122,14 +126,22 @@ const Table = (props) => {
             <th>name</th>
             <th>city</th>
             <th>
-              state{" "}
+              state
+              <br />
               <Filter
                 states={states}
                 onAddStateFilter={addStateFilterHandler}
               />
             </th>
             <th>telephone</th>
-            <th>genre</th>
+            <th>
+              genre
+              <br />
+              <Filter
+                genres={genres}
+                onAddGenreFilterHandler={addGenreFilterHandler}
+              />
+            </th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
