@@ -1,30 +1,39 @@
 import React, { useEffect, useState } from "react";
 
 const Filter = (props) => {
-  const statesToFilter = props.states;
-  const [stateToFilter, setStateToFilter] = useState();
+  const states = props.states;
+  const genres = props.genres;
+  const item = props.states || props.genres;
+  // const [stateToFilter, setStateToFilter] = useState();
+  const [filterOn, setFilterOn] = useState();
 
   useEffect(() => {
-    props.onAddStateFilter(stateToFilter);
-  }, [stateToFilter]);
+    if (states) {
+      props.onAddStateFilter(filterOn);
+    }
+    if (genres) {
+      props.onAddGenreFilterHandler(filterOn);
+    }
+  }, [filterOn]);
 
-  const setStateFilter = (event) => {
+  const setFilter = (event) => {
     event.preventDefault();
-    setStateToFilter(event.target.value);
-  }
+    setFilterOn(event.target.value);
+  };
 
   return (
     <div>
-      <label htmlFor="states">state select</label>
-      <select name="states" id="states" onChange={setStateFilter}>
+      <label htmlFor="states">select</label>
+      <select name="states" id="states" onChange={setFilter}>
         <option value="all" defaultValue>
           All
         </option>
-        {statesToFilter.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
+        {item &&
+          item.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
         ;
       </select>
     </div>
