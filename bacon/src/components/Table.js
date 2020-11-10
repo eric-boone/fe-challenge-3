@@ -30,6 +30,13 @@ const Table = (props) => {
   useEffect(() => {
     searchFor(restaurants, searchTerm);
   }, [searchTerm]);
+  
+  useEffect(() => {
+    if (!search) {
+      sortTable(restaurants);
+    }
+  }, [search]);
+
 
   function searchFor(arr, query) {
     const searchResults = [];
