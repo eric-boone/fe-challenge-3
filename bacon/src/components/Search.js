@@ -5,25 +5,30 @@ const Search = (props) => {
   const [search, setSearch] = useState(false);
 
   useEffect(() => {
-    props.onSearch(searchTerm);
+    props.onSearch(searchTerm, search);
   }, [search]);
 
   const handleSearch = (event) => {
     event.preventDefault();
-    setSearch(!search);
+    setSearch(true);
+  };
+
+  const handleClearSearch = (event) => {
+    event.preventDefault();
+    setSearchTerm("");
+    setSearch(false);
   };
 
   return (
     <form>
-      <label>
-        <input
-          type="text"
-          name="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </label>
-      <input type="submit" value="Search" onClick={handleSearch} />
+      <input
+        type="text"
+        name="search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {search && <input type="submit" value="x" onClick={handleClearSearch} />}
+      {!search && <input type="submit" value="Search" onClick={handleSearch} />}
     </form>
   );
 };
