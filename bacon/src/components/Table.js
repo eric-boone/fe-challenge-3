@@ -26,6 +26,25 @@ const Table = (props) => {
     genreTableFilter(restaurants, genreFilter);
   }, [genreFilter]);
 
+  useEffect(() => {
+    searchFor(restaurants, searchTerm);
+  }, [searchTerm]);
+
+  function searchFor(arr, query) {
+    const searchResults = [];
+    const q =  query.toLowerCase()
+    arr.forEach((r) => {
+      if (
+        r.name.toLowerCase().includes(q) ||
+        r.city.toLowerCase().includes(q) ||
+        r.genre.toLowerCase().includes(q)
+      ) {
+        searchResults.push(r);
+      }
+    });
+    makeRows(searchResults);
+  }
+
   function allGenres(restaurants) {
     const genresArray = [];
 
