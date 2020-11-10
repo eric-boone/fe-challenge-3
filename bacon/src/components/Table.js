@@ -12,6 +12,7 @@ const Table = (props) => {
   const [genreFilter, setGenreFilter] = useState();
   const [genres, setGenres] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [search, setSearch] = useState(false);
 
   useEffect(() => {
     sortTable(restaurants);
@@ -139,8 +140,9 @@ const Table = (props) => {
     setGenreFilter(genreFilter);
   };
 
-  const searchForTerm = (term) => {
+  const searchForTerm = (term, bool) => {
     setSearchTerm(term);
+    setSearch(bool);
   };
 
   return (
@@ -172,8 +174,6 @@ const Table = (props) => {
         </thead>
         <tbody>{rows}</tbody>
       </table>
-      {/* {console.log("searchTerm", searchTerm)} */}
-      {/* {console.log("searchedRows", searchedRows)} */}
     </div>
   );
 };
