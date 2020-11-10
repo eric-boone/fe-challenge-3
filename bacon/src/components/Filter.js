@@ -4,7 +4,6 @@ const Filter = (props) => {
   const states = props.states;
   const genres = props.genres;
   const item = props.states || props.genres;
-  // const [stateToFilter, setStateToFilter] = useState();
   const [filterOn, setFilterOn] = useState();
 
   useEffect(() => {
