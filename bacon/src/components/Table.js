@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import stateData from "../data/states.json";
 import Filter from "./Filter";
+import Search from "./Search";
 
 const Table = (props) => {
   const restaurants = props.restaurants;
@@ -10,6 +11,7 @@ const Table = (props) => {
   const [stateFilter, setStateFilter] = useState();
   const [genreFilter, setGenreFilter] = useState();
   const [genres, setGenres] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     sortTable(restaurants);
@@ -118,8 +120,13 @@ const Table = (props) => {
     setGenreFilter(genreFilter);
   };
 
+  const searchForTerm = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <div>
+      <Search onSearch={searchForTerm} />
       <table>
         <thead>
           <tr>
@@ -146,6 +153,8 @@ const Table = (props) => {
         </thead>
         <tbody>{rows}</tbody>
       </table>
+      {/* {console.log("searchTerm", searchTerm)} */}
+      {/* {console.log("searchedRows", searchedRows)} */}
     </div>
   );
 };
