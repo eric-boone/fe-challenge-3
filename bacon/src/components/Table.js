@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import stateData from "../data/states.json";
 import Filter from "./Filter";
+import Pagination from "./Pagination";
 import Search from "./Search";
 
 const Table = (props) => {
@@ -181,6 +182,7 @@ const Table = (props) => {
         </thead>
         <tbody>{rows}</tbody>
       </table>
+      <Pagination />
     </div>
   );
 };
