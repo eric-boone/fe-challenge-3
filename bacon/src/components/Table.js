@@ -14,6 +14,23 @@ const Table = (props) => {
   const [genres, setGenres] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [search, setSearch] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const rowsPerPage = 10;
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = (rows, indexOfLastRow, indexOfFirstRow) => {
+    const cR = [];
+    for (let i = indexOfFirstRow; i < indexOfLastRow; i++) {
+      const element = rows[i];
+      cR.push(element);
+    }
+    return cR;
+  };
+
+  const onPaginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
   useEffect(() => {
     sortTable(restaurants);
