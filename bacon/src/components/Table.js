@@ -197,9 +197,9 @@ const Table = (props) => {
             </th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody>{currentRows(rows, indexOfLastRow, indexOfFirstRow)}</tbody>
       </table>
-      <Pagination />
+      <Pagination rowsPerPage={rowsPerPage} totalRows={rows.length} paginate={onPaginate} />
     </div>
   );
 };
