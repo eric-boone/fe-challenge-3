@@ -15,22 +15,9 @@ const Table = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [search, setSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-
   const rowsPerPage = 10;
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = (rows, indexOfLastRow, indexOfFirstRow) => {
-    const cR = [];
-    for (let i = indexOfFirstRow; i < indexOfLastRow; i++) {
-      const element = rows[i];
-      cR.push(element);
-    }
-    return cR;
-  };
-
-  const onPaginate = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
 
   useEffect(() => {
     sortTable(restaurants);
@@ -48,17 +35,25 @@ const Table = (props) => {
   useEffect(() => {
     searchFor(restaurants, searchTerm);
   }, [searchTerm]);
-  
+
   useEffect(() => {
     if (!search) {
       sortTable(restaurants);
     }
   }, [search]);
 
+  const currentRows = (rows, indexOfLastRow, indexOfFirstRow) => {
+    const cR = [];
+    for (let i = indexOfFirstRow; i < indexOfLastRow; i++) {
+      const element = rows[i];
+      cR.push(element);
+    }
+    return cR;
+  };
 
   function searchFor(arr, query) {
     const searchResults = [];
-    const q =  query.toLowerCase()
+    const q = query.toLowerCase();
     arr.forEach((r) => {
       if (
         r.name.toLowerCase().includes(q) ||
@@ -170,6 +165,10 @@ const Table = (props) => {
     setSearch(bool);
   };
 
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div>
       <Search onSearch={searchForTerm} />
@@ -199,7 +198,11 @@ const Table = (props) => {
         </thead>
         <tbody>{currentRows(rows, indexOfLastRow, indexOfFirstRow)}</tbody>
       </table>
-      <Pagination rowsPerPage={rowsPerPage} totalRows={rows.length} paginate={onPaginate} />
+      <Pagination
+        rowsPerPage={rowsPerPage}
+        totalRows={rows.length}
+        onPaginate={paginate}
+      />
     </div>
   );
 };
