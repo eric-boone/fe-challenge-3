@@ -9,7 +9,9 @@ const Pagination = ({ rowsPerPage, totalRows, paginate }) => {
 
   return (
     <div>
-      <p>Pagination works</p>
+      {pageNumbers.map((number) => (
+        <a onClick={() => paginate(number)} key={number} href="!#">{number}</a>
+      ))}
     </div>
   );
 };
