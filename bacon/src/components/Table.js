@@ -86,10 +86,17 @@ const Table = (props) => {
   }
 
   function stateTableFilter(restaurants, stateFilter) {
+    if (stateFilter === "all") {
+      sortTable(restaurants);
+    } else {
+      makeRows(stateTableFilterToArray(restaurants, stateFilter));
+    }
+  }
+
+  function stateTableFilterToArray(restaurants, stateFilter) {
     const sf = stateFilter;
     const r = restaurants;
     const rf = [];
-
     if (stateFilter === "all") {
       sortTable(restaurants);
     } else {
@@ -98,7 +105,7 @@ const Table = (props) => {
           rf.push(r[i]);
         }
       }
-      makeRows(rf);
+      return rf;
     }
   }
 
