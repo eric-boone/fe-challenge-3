@@ -143,7 +143,8 @@ const Table = (props) => {
   }
 
   function sortTable(restaurants) {
-    restaurants.sort((a, b) => {
+    const restaurantSort = [...restaurants];
+    restaurantSort.sort((a, b) => {
       if (a.name < b.name) {
         return -1;
       }
@@ -152,7 +153,7 @@ const Table = (props) => {
       }
       return 0;
     });
-    makeRows(restaurants);
+    makeRows(restaurantSort);
   }
 
   function makeRows(data) {
