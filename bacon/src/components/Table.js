@@ -110,10 +110,17 @@ const Table = (props) => {
   }
 
   function genreTableFilter(restaurants, genreFilter) {
+    if (genreFilter === "all") {
+      sortTable(restaurants);
+    } else {
+      makeRows(genreTableFilterToArray(restaurants, genreFilter));
+    }
+  }
+
+  function genreTableFilterToArray(restaurants, genreFilter) {
     const gf = genreFilter;
     const r = restaurants;
     const rf = [];
-
     if (genreFilter === "all") {
       sortTable(restaurants);
     } else {
@@ -122,7 +129,7 @@ const Table = (props) => {
           rf.push(r[i]);
         }
       }
-      makeRows(rf);
+      return rf;
     }
   }
 
