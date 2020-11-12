@@ -51,10 +51,14 @@ const Table = (props) => {
     return cR;
   };
 
-  function searchFor(arr, query) {
+  function searchFor(restaurants, query, stateFilter) {
+    makeRows(searchToArray(restaurants, query));
+  }
+
+  function searchToArray(restaurants, query) {
     const searchResults = [];
     const q = query.toLowerCase();
-    arr.forEach((r) => {
+    restaurants.forEach((r) => {
       if (
         r.name.toLowerCase().includes(q) ||
         r.city.toLowerCase().includes(q) ||
@@ -63,12 +67,11 @@ const Table = (props) => {
         searchResults.push(r);
       }
     });
-    makeRows(searchResults);
+    return searchResults;
   }
 
   function allGenres(restaurants) {
     const genresArray = [];
-
     restaurants.forEach((restaurant) => {
       const array = [];
       array.push(restaurant.genre);
