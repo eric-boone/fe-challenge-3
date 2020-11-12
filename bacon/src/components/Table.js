@@ -64,8 +64,8 @@ const Table = (props) => {
     makeRows(searchToArray(restaurants, query));
   }
 
-  function searchToArray(restaurants, query) {
-    const searchResults = [];
+  function searchToArray(restaurants, query, stateFilter, genreFilter) {
+    let searchResults = [];
     const q = query.toLowerCase();
     restaurants.forEach((r) => {
       if (
@@ -76,7 +76,24 @@ const Table = (props) => {
         searchResults.push(r);
       }
     });
-    return searchResults;
+    if (
+      (!stateFilter || stateFilter === "all") &&
+      (!genreFilter || genreFilter === "all")
+    ) {
+      return searchResults;
+    } else if (!genreFilter || genreFilter === "all") {
+      searchResults = stateTableFilterToArray(searchResults, stateFilter);
+      return searchResults;
+    } else if (!stateFilter || stateFilter === "all") {
+      searchResults = genreTableFilterToArray(searchResults, genreFilter);
+      return searchResults;
+    } else {
+      searchResults = stateTableFilterToArray(
+        genreTableFilterToArray(searchResults, genreFilter),
+        stateFilter
+      );
+      return searchResults;
+    }
   }
 
   function allGenres(restaurants) {
