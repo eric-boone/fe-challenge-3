@@ -60,8 +60,8 @@ const Table = (props) => {
     return cR;
   };
 
-  function searchFor(restaurants, query, stateFilter) {
-    makeRows(searchToArray(restaurants, query));
+  function searchFor(restaurants, query, stateFilter, genreFilter) {
+    sortTable(searchToArray(restaurants, query, stateFilter, genreFilter));
   }
 
   function searchToArray(restaurants, query, stateFilter, genreFilter) {
