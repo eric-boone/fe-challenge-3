@@ -25,7 +25,11 @@ const Table = (props) => {
   }, [restaurants]);
 
   useEffect(() => {
-    stateTableFilter(restaurants, stateFilter);
+    if (!searchTerm) {
+      stateTableFilter(restaurants, stateFilter);
+    } else {
+      searchFor(restaurants, searchTerm, stateFilter, genreFilter);
+    }
   }, [stateFilter]);
 
   useEffect(() => {
