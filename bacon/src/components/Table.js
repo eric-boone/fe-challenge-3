@@ -98,7 +98,7 @@ const Table = (props) => {
     if (stateFilter === "all") {
       sortTable(restaurants);
     } else {
-      makeRows(stateTableFilterToArray(restaurants, stateFilter));
+      sortTable(stateTableFilterToArray(restaurants, stateFilter));
     }
   }
 
@@ -122,7 +122,7 @@ const Table = (props) => {
     if (genreFilter === "all") {
       sortTable(restaurants);
     } else {
-      makeRows(genreTableFilterToArray(restaurants, genreFilter));
+      sortTable(genreTableFilterToArray(restaurants, genreFilter));
     }
   }
 
@@ -156,25 +156,16 @@ const Table = (props) => {
   }
 
   function makeRows(data) {
-    if (data.length === 0) {
-      const noRows = (
-        <tr>
-          <td colSpan="5">no restaurants found</td>
-        </tr>
-      );
-      setRows(noRows);
-    } else {
-      const formattedRows = data.map((restaurants) => (
-        <tr key={restaurants.id}>
-          <td>{restaurants.name}</td>
-          <td>{restaurants.city}</td>
-          <td>{restaurants.state}</td>
-          <td>{restaurants.telephone}</td>
-          <td>{restaurants.genre}</td>
-        </tr>
-      ));
-      setRows(formattedRows);
-    }
+    const formattedRows = data.map((restaurants) => (
+      <tr key={restaurants.id}>
+        <td>{restaurants.name}</td>
+        <td>{restaurants.city}</td>
+        <td>{restaurants.state}</td>
+        <td>{restaurants.telephone}</td>
+        <td>{restaurants.genre}</td>
+      </tr>
+    ));
+    setRows(formattedRows);
   }
 
   const addStateFilterHandler = (stateFilter) => {
