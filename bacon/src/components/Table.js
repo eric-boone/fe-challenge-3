@@ -33,7 +33,11 @@ const Table = (props) => {
   }, [stateFilter]);
 
   useEffect(() => {
-    genreTableFilter(restaurants, genreFilter);
+    if (!searchTerm) {
+      genreTableFilter(restaurants, genreFilter);
+    } else {
+      searchFor(restaurants, searchTerm, stateFilter, genreFilter);
+    }
   }, [genreFilter]);
 
   useEffect(() => {
