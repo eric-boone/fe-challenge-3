@@ -96,3 +96,21 @@ export function searchToArray(restaurants, query, stateFilter, genreFilter) {
     return searchResults;
   }
 }
+
+export const currentRows = (rows, indexOfLastRow, indexOfFirstRow) => {
+  const cR = [];
+  if (rows.length > 0) {
+    for (let i = indexOfFirstRow; i < indexOfLastRow; i++) {
+      const element = rows[i];
+      cR.push(element);
+    }
+  } else {
+    const noRows = (
+      <tr>
+        <td colSpan="5">no restaurants found</td>
+      </tr>
+    );
+    return noRows;
+  }
+  return cR;
+};
