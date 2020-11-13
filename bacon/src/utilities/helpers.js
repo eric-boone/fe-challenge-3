@@ -49,3 +49,18 @@ export function stateTableFilterToArray(restaurants, stateFilter) {
   }
   return rf;
 }
+
+export function allGenres(restaurants, callback) {
+  const genresArray = [];
+  restaurants.forEach((restaurant) => {
+    const array = [];
+    array.push(restaurant.genre);
+    array.forEach((r) => {
+      r.split(",").forEach((r) => {
+        genresArray.push(r);
+      });
+    });
+  });
+  const uniqueGenres = [...new Set(genresArray)];
+  callback(uniqueGenres);
+}
