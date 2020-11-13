@@ -7,13 +7,17 @@ const Pagination = ({ rowsPerPage, totalRows, onPaginate }) => {
   }
 
   return (
-    <div>
-      {pageNumbers.map((number) => (
-        <a onClick={() => onPaginate(number)} key={number} href="!#">
-          {number}
-        </a>
-      ))}
-    </div>
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a className='page-link' onClick={() => onPaginate(number)} href="!#">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

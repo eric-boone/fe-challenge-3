@@ -22,7 +22,6 @@ const Filter = (props) => {
 
   return (
     <div>
-      <label htmlFor="states">select</label>
       <select name="states" id="states" onChange={setFilter}>
         <option value="all" defaultValue>
           All

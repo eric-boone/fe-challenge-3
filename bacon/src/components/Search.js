@@ -20,16 +20,37 @@ const Search = (props) => {
   };
 
   return (
-    <form>
+    <div className="input-group col-md-3">
       <input
         type="text"
         name="search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        className="form-control"
       />
-      {search && <input type="submit" value="x" onClick={handleClearSearch} />}
-      {!search && <input type="submit" value="Search" onClick={handleSearch} />}
-    </form>
+      <div className="input-group-append">
+        {search && (
+          <button
+            type="submit"
+            value="x"
+            onClick={handleClearSearch}
+            className="btn btn-outline-danger"
+          >
+            Cancel
+          </button>
+        )}
+        {!search && (
+          <button
+            type="submit"
+            value="Search"
+            onClick={handleSearch}
+            className="btn btn-outline-success"
+          >
+            Search
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 

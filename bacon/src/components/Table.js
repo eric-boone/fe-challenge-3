@@ -104,7 +104,7 @@ const Table = (props) => {
   return (
     <div>
       <Search onSearch={searchForTerm} />
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>name</th>

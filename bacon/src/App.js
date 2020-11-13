@@ -36,8 +36,12 @@ function App() {
   } else {
     return (
       <div>
-        <p>bacon</p>
-        <Table restaurants={restaurants} />
+        <div className="container">
+          <h1>BACON</h1>
+        </div>
+        <div className="container">
+          <Table restaurants={restaurants} />
+        </div>
       </div>
     );
   }
