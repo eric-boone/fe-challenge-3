@@ -10,3 +10,17 @@ export function makeRows(data, callback) {
   ));
   callback(formattedRows);
 }
+
+export function sortTableToArray(restaurants) {
+  const restaurantSort = [...restaurants];
+  restaurantSort.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+  return restaurantSort;
+}
