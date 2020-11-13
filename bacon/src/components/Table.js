@@ -89,22 +89,6 @@ const Table = (props) => {
     }
   }
 
-  function stateTableFilterToArray(restaurants, stateFilter) {
-    const sf = stateFilter;
-    const r = restaurants;
-    const rf = [];
-    if (stateFilter === "all") {
-      sortTable(restaurants);
-    } else {
-      for (let i = 0; i < r.length; i++) {
-        if (r[i].state === sf) {
-          rf.push(r[i]);
-        }
-      }
-      return rf;
-    }
-  }
-
   function genreTableFilter(restaurants, genreFilter) {
     if (genreFilter === "all") {
       sortTable(restaurants);

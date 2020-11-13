@@ -36,3 +36,16 @@ export function genreTableFilterToArray(restaurants, genreFilter) {
   }
   return rf;
 }
+
+export function stateTableFilterToArray(restaurants, stateFilter) {
+  const sf = stateFilter;
+  const r = restaurants;
+  const rf = [];
+
+  for (let i = 0; i < r.length; i++) {
+    if (r[i].state === sf) {
+      rf.push(r[i]);
+    }
+  }
+  return rf;
+}
