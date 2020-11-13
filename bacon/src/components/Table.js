@@ -4,6 +4,15 @@ import stateData from "../data/states.json";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import Search from "./Search";
+import {
+  makeRows,
+  sortTableToArray,
+  genreTableFilterToArray,
+  stateTableFilterToArray,
+  allGenres,
+  searchToArray,
+  currentRows
+} from "../utilities/helpers";
 
 const Table = (props) => {
   const restaurants = props.restaurants;
