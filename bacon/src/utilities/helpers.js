@@ -64,3 +64,35 @@ export function allGenres(restaurants, callback) {
   const uniqueGenres = [...new Set(genresArray)];
   callback(uniqueGenres);
 }
+
+export function searchToArray(restaurants, query, stateFilter, genreFilter) {
+  let searchResults = [];
+  const q = query.toLowerCase();
+  restaurants.forEach((r) => {
+    if (
+      r.name.toLowerCase().includes(q) ||
+      r.city.toLowerCase().includes(q) ||
+      r.genre.toLowerCase().includes(q)
+    ) {
+      searchResults.push(r);
+    }
+  });
+  if (
+    (!stateFilter || stateFilter === "all") &&
+    (!genreFilter || genreFilter === "all")
+  ) {
+    return searchResults;
+  } else if (!genreFilter || genreFilter === "all") {
+    searchResults = stateTableFilterToArray(searchResults, stateFilter);
+    return searchResults;
+  } else if (!stateFilter || stateFilter === "all") {
+    searchResults = genreTableFilterToArray(searchResults, genreFilter);
+    return searchResults;
+  } else {
+    searchResults = stateTableFilterToArray(
+      genreTableFilterToArray(searchResults, genreFilter),
+      stateFilter
+    );
+    return searchResults;
+  }
+}
