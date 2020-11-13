@@ -30,7 +30,7 @@ const Table = (props) => {
 
   useEffect(() => {
     sortTable(restaurants);
-    allGenres(restaurants);
+    allGenres(restaurants, setGenres);
   }, [restaurants]);
 
   useEffect(() => {
@@ -79,53 +79,6 @@ const Table = (props) => {
 
   function searchFor(restaurants, query, stateFilter, genreFilter) {
     sortTable(searchToArray(restaurants, query, stateFilter, genreFilter));
-  }
-
-  function searchToArray(restaurants, query, stateFilter, genreFilter) {
-    let searchResults = [];
-    const q = query.toLowerCase();
-    restaurants.forEach((r) => {
-      if (
-        r.name.toLowerCase().includes(q) ||
-        r.city.toLowerCase().includes(q) ||
-        r.genre.toLowerCase().includes(q)
-      ) {
-        searchResults.push(r);
-      }
-    });
-    if (
-      (!stateFilter || stateFilter === "all") &&
-      (!genreFilter || genreFilter === "all")
-    ) {
-      return searchResults;
-    } else if (!genreFilter || genreFilter === "all") {
-      searchResults = stateTableFilterToArray(searchResults, stateFilter);
-      return searchResults;
-    } else if (!stateFilter || stateFilter === "all") {
-      searchResults = genreTableFilterToArray(searchResults, genreFilter);
-      return searchResults;
-    } else {
-      searchResults = stateTableFilterToArray(
-        genreTableFilterToArray(searchResults, genreFilter),
-        stateFilter
-      );
-      return searchResults;
-    }
-  }
-
-  function allGenres(restaurants) {
-    const genresArray = [];
-    restaurants.forEach((restaurant) => {
-      const array = [];
-      array.push(restaurant.genre);
-      array.forEach((r) => {
-        r.split(",").forEach((r) => {
-          genresArray.push(r);
-        });
-      });
-    });
-    const uniqueGenres = [...new Set(genresArray)];
-    setGenres(uniqueGenres);
   }
 
   function stateTableFilter(restaurants, stateFilter) {

@@ -24,3 +24,15 @@ export function sortTableToArray(restaurants) {
   });
   return restaurantSort;
 }
+
+export function genreTableFilterToArray(restaurants, genreFilter) {
+  const gf = genreFilter;
+  const r = restaurants;
+  const rf = [];
+  for (let i = 0; i < r.length; i++) {
+    if (r[i].genre.includes(gf)) {
+      rf.push(r[i]);
+    }
+  }
+  return rf;
+}
