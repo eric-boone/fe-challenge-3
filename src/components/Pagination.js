@@ -11,7 +11,13 @@ const Pagination = ({ rowsPerPage, totalRows, onPaginate }) => {
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a className='page-link' onClick={() => onPaginate(number)} href="!#">
+            <a
+              className="page-link"
+              onClick={
+                ((event) => event.preventDefault(), () => onPaginate(number))
+              }
+              href="!#"
+            >
               {number}
             </a>
           </li>
