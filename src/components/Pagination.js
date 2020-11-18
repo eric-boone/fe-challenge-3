@@ -16,7 +16,7 @@ const Pagination = ({ rowsPerPage, totalRows, onPaginate }) => {
               onClick={
                 ((event) => event.preventDefault(), () => onPaginate(number))
               }
-              href="!#"
+              href="#"
             >
               {number}
             </a>
